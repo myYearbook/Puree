@@ -1,13 +1,20 @@
 <?php
 
-define( 'ASSETS_URL', 'http://assets.mydomain.com/' );
-
 /**
  * Handle delegation of tasks
  *
  * @author Dallas Gutauckis <dallas@myyearbook.com>
  * @since 2008-11-13 23:40:51
  */
+
+/*
+ * Configuration parameter that defines the root of your assets URL.
+ * This is used for replacing relative URLs with the full URL for the
+ * sake of exactness and potential drop-in capabilities
+ */
+define( 'ASSETS_URL', 'http://assets.mydomain.com/' );
+
+// No configuration beyond this point
 
 $validTypes = array( 'css', 'js' );
 
