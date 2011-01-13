@@ -9,7 +9,7 @@
 
 header('Content-type: text/css');
 
-function handlecss( $files )
+function handleCSS( $files )
 {
   $fileContents = '';
 
