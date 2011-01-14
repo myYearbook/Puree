@@ -18,7 +18,7 @@ function handleJS( $tmpFiles )
       continue;
     }
 
-    $filePath = realpath( 'JavaScript/' . $file . '.js' );    
+    $filePath = realpath( PATH_PREFIX_JS . $file . '.js' );    
     $fileContent = file_get_contents( $filePath );
     
     if ( $fileContent )

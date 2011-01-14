@@ -7,26 +7,14 @@
  * @since 2008-10-26 23:05:58 EST
  */
 
-header('Content-type: text/css');
-
 function handleCSS( $files )
 {
   $fileContents = '';
-
-  header('Pragma: cache');
-  header('Cache-control: public');
-  header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', time() + intval(30*1440*60)));
-  header('Content-type: text/css');
+  header( 'Content-type: text/css' );
 
   foreach ( $files as &$file )
   {
-    if ( strstr( '..', $file ) !== false )
-    {
-      continue;
-    }
-   
-    $filePath = realpath( 'CSS/' . $file . '.css' );
-
+    $filePath = realpath( PATH_PREFIX_CSS . $file . '.css' );
     addCSSFile( $filePath, $file );
   }
 }
@@ -38,7 +26,9 @@ function addCSSFile( $filePath, $simpleName )
   
   $fileContents = '';
   $data = compressCSS( $filePath, $sizeBefore, $sizeAfter );
-  $fileContents = '/* ' . $simpleName . ' ' . $sizeBefore . ':' . $sizeAfter . ' */' . $data . "\n";
+  // Uncomment the following to see your filesize difference
+  $fileContents .= '/*' . $simpleName . ':' . $sizeBefore . ':' . $sizeAfter . '*/';
+  $fileContents .= $data . "\n";
   
   echo $fileContents;
 }
@@ -77,7 +67,7 @@ function compressCSS( $filePath, &$sizeBefore, &$sizeAfter )
   // And... now, remove imports...
   $done = preg_replace( '/@import.[^;]+;/', '', $done );
   
-  // Handle URL delcarations properly, since we're in puree and it thinks it should be in assets!
+  // Handle URL declarations properly, since we're in puree and it thinks it should be in assets!
   preg_match_all( '/url\((.[^\)]+)\)/', $done, $matches );  
   foreach ( $matches[1] as $match )
   {
