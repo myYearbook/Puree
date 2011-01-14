@@ -27,7 +27,7 @@ function addCSSFile( $filePath, $simpleName )
   $fileContents = '';
   $data = compressCSS( $filePath, $sizeBefore, $sizeAfter );
   // Uncomment the following to see your filesize difference
-  $fileContents .= '/*' . $simpleName . ':' . $sizeBefore . ':' . $sizeAfter . '*/';
+  //$fileContents .= '/*' . $simpleName . ':' . $sizeBefore . ':' . $sizeAfter . '*/';
   $fileContents .= $data . "\n";
   
   echo $fileContents;
