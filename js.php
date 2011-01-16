@@ -11,6 +11,7 @@ function handleJS( $tmpFiles )
 {
   $files = array();
   $fileContents = '';
+  $content = '';
   foreach ( $tmpFiles as &$file )
   {
     if ( strstr( '..', $file ) !== false )
