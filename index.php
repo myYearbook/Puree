@@ -12,12 +12,12 @@
  * This is used for replacing relative URLs with the full URL for the
  * sake of exactness and potential drop-in capabilities
  */
-define( 'ASSETS_URL', 'http://assets.devk.it/' );
+define( 'ASSETS_URL', 'http://devk.it/' );
 
 /*
  * The path that Puree has been installed to
  */
-define( 'INSTALL_PATH', '/proj/puree/' );
+define( 'INSTALL_PATH', '/puree/' );
 
 /*
  * Path prefixes for each content type
@@ -44,7 +44,7 @@ header( 'Expires: ' . gmdate( 'D, d M Y H:i:s \G\M\T', time() + 2592000 ) );
 $validTypes = array( 'css', 'js' );
 
 // Remove the install path from the request uri
-$uri = ltrim( $_SERVER['REQUEST_URI'], INSTALL_PATH );
+$uri = substr( $_SERVER['REQUEST_URI'], strlen( INSTALL_PATH ) );
 
 if ( ! $uri )
 {
@@ -52,7 +52,6 @@ if ( ! $uri )
   logError( 'Invalid uri requested' );
   exit;
 }
-
 list( $type, $params ) = explode( '/', $uri, 2 );
 
 if ( ! in_array( $type, $validTypes ) )
